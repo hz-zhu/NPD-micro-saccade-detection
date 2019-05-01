@@ -17,7 +17,7 @@ What is contained in this repository is the algorithm (C++) that detects (micro)
 
   By default, our algorithm reads in files X.csv and Y.csv, where the X and Y coordinates of the tracked eye-gaze positions are stored in each of the csv files. Data in the X.csv and Y.csv must be sqaure matrices of same dimensions, and each trail of the tracked eye-gaze positions forms the rows of the input file. Our algorithm can perform the NPD on each row of the dataset independently.
   
-  The output of the NPD regarding the ith trial (ith row of the data files) are the following:
+  The output of the NPD regarding the [i] trial (ith row of the data files) are the following:
   
   - Result_[i]_detail.csv
   - Result_[i]_

@@ -19,27 +19,27 @@ What is contained in this repository is the algorithm (C++) that detects (micro)
   
   The output of the NPD regarding the [i] trial (ith row of the data files) are the following:
   
-  - Result_[i]_detail.csv
+  - Result_[i]_detail.csv:  
       The detailed detection result, a N by 10 matrix. N is the total number of detected events of the [i] trial. For detailed explanation of the meaning of each element in a row, please check file _hzhu_npd.h_ for function _hzhu_mat hzhu_npd_results(hzhu_mat &detect, hzhu_mat &result_X, hzhu_mat &result_Y)_.
     
-  - Result_[i]_detect.csv
+  - Result_[i]_detect.csv:  
       The detection result in the form of 0s and 1s, where 0 indicates there is no saccadic event and 1 indicates there is a event
   
-  - Result_[i]data_x.csv
+  - Result_[i]data_x.csv:  
       Same as the ith row in X.csv
   
-  - Result_[i]data_y.csv
+  - Result_[i]data_y.csv:  
       Same as the ith row in Y.csv
   
-  - Result_[i]noise_x_raw.csv
+  - Result_[i]noise_x_raw.csv:  
       Estimated variance as a function of n for horizontal movement of the eye
   
-  - Result_[i]noise_y_raw.csv
+  - Result_[i]noise_y_raw.csv:  
       Estimated variance as a function of n for vertical movement of the eye
   
-  - Result_[i]result_x.csv
+  - Result_[i]result_x.csv:  
       Unprocessed result regarding the horizontal movement of the eye, for more information please check file _hzhu_npd_trial.h_ for function _void hzhu_npd_trial::process(double x1, double x2, double y1, double y2)_
   
-  - Result_[i]result_y.csv
-  - Result-[i]SIGMA_inv_x.csv
-  - Result-[i]SIGMA_inv_y.csv
+  - Result_[i]result_y.csv:  
+  - Result-[i]SIGMA_inv_x.csv:  
+  - Result-[i]SIGMA_inv_y.csv:  

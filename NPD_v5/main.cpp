@@ -13,11 +13,9 @@ int main()
 
 	std::string filenameX = "X.csv";
 	std::string filenameY = "Y.csv";
-	std::string filenameL = "L.csv";
 
 	orz.out(filenameX);
 	orz.out(filenameY);
-	orz.out(filenameL);
 	orz.out();
 
 	hzhu_mat source_data_X(filenameX);
@@ -26,8 +24,6 @@ int main()
 	hzhu_mat data_use_Y = source_data_Y.transpose();
 	hzhu_mat d_source_X = data_use_X.diff();
 	hzhu_mat d_source_Y = data_use_Y.diff();
-
-	hzhu_mat data_label = hzhu_mat(filenameL).transpose();
 
 	orz.out("-- Data loaded: ");
 	std::cout << "\t\t" << data_use_X[-1] << " x " << data_use_X[-2] << " matrix\r\n" << std::endl;
@@ -39,7 +35,7 @@ int main()
 
 	hzhu_mat x_abnormal = hzhu_npd_abnormal(data_use_X);
 	hzhu_mat y_abnormal = hzhu_npd_abnormal(data_use_Y);
-	hzhu_mat abnormal = x_abnormal + y_abnormal + hzhu_npd_incomplete(data_label);
+	hzhu_mat abnormal = x_abnormal + y_abnormal;
 
 	// NPD =============================================================================================
 	orz.start_counter();
@@ -56,9 +52,9 @@ int main()
 	double start_x1 = 10.0; // the paramter for MLE, initial search point for \theta_2
 	double start_x2 = 2.0; // the paramter for MLE, initial search point for \theta_3
 
-	int chunk_size = 15; // the parameter for NPD, the length of sectioning the data trial
+	int chunk_size = 30; // the parameter for NPD, the length of sectioning the data trial
 	double T_theta_1 = 4.0; // the parameter for NPD, T_theta_1 related to thresholding
-	int median_filter_strength = chunk_size; // the parameter for NPD, the strength of the median filter
+	int median_filter_strength = chunk_size - 10; // the parameter for NPD, the strength of the median filter
 	double alpha = 0.01; // the paramter for NPD, the expected false alarm probability
 
 	// Other parameters

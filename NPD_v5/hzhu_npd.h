@@ -669,22 +669,22 @@ hzhu_mat hzhu_npd_results(hzhu_mat &detect, hzhu_mat &result_X, hzhu_mat &result
 	int N = result_X.data->size2;
 	for (int j = 0; j < counter; j++)
 	{
-		int a = re.data->data[j * 10];
-		int b = re.data->data[j * 10 + 1];
+		int a = re.data->data[j * 10];// starting point of the detection chunk
+		int b = re.data->data[j * 10 + 1]; // Ending point of the detection chunk
 		
 		hzhu_mat tmp = result_X.get_sub(a, 7, b, 7);
 		int max_index = tmp.min_index_all().data->data[0];
-		re.data->data[j * 10 + 2] = max_index + a;//index of start point X
-		re.data->data[j * 10 + 3] = result_X.data->data[(max_index + a) * N];//theta1 X
-		re.data->data[j * 10 + 4] = result_X.data->data[(max_index + a) * N + 1];//theta2 X
-		re.data->data[j * 10 + 5] = result_X.data->data[(max_index + a) * N + 2];//theta3 X
+		re.data->data[j * 10 + 2] = max_index + a;//index of start point t1 for X (determined by the best fitted data section)
+		re.data->data[j * 10 + 3] = result_X.data->data[(max_index + a) * N];//theta1 for X
+		re.data->data[j * 10 + 4] = result_X.data->data[(max_index + a) * N + 1];//theta2 for X
+		re.data->data[j * 10 + 5] = result_X.data->data[(max_index + a) * N + 2];//theta3 for X
 
 		hzhu_mat Tmp = result_Y.get_sub(a, 7, b, 7);
 		max_index = Tmp.min_index_all().data->data[0];
-		re.data->data[j * 10 + 6] = max_index + a;//index of start point Y
-		re.data->data[j * 10 + 7] = result_Y.data->data[(max_index + a) * N];//theta1 Y
-		re.data->data[j * 10 + 8] = result_Y.data->data[(max_index + a) * N + 1];//theta2 Y
-		re.data->data[j * 10 + 9] = result_Y.data->data[(max_index + a) * N + 2];//theta3 Y
+		re.data->data[j * 10 + 6] = max_index + a;//index of start point t1 for Y (determined by the best fitted data section)
+		re.data->data[j * 10 + 7] = result_Y.data->data[(max_index + a) * N];//theta1 for Y
+		re.data->data[j * 10 + 8] = result_Y.data->data[(max_index + a) * N + 1];//theta2 for Y
+		re.data->data[j * 10 + 9] = result_Y.data->data[(max_index + a) * N + 2];//theta3 for Y
 	}
 
 	return re;

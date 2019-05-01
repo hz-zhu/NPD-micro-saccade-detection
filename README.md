@@ -14,3 +14,7 @@ What is contained in this repository is the algorithm (C++) that detects (micro)
   - hzhu_npd_trial.h (The NPD for a trial of gaze signal)
   - hzhu_mat.h (Handling GSL matrix)
   - hzhu_gen.h (Handling OpenMP and auxiliary tasks)
+
+  By default, our algorithm reads in files X.csv and Y.csv, where the X and Y coordinates of the tracked eye-gaze positions are stored in each of the csv files. Data in the X.csv and Y.csv must be sqaure matrices of same dimensions, and each trail of the tracked eye-gaze positions forms the rows of the input file. Our algorithm can perform the NPD on each row of the dataset independently.
+  
+  The output of the NPD regarding the i^{th} trial 

@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 
 #include "hzhu_npd_trial.h"
 #include <string>
@@ -43,25 +44,31 @@ int main()
 	// NPD =============================================================================================
 	orz.start_counter();
 
-	int noise_n1 = 1;
-	int noise_n2 = 6;
-	// int noise_chunk = 100;
-	int noise_chunk = 30;
-	// int chunk_size = 35;
-	int chunk_size = 15;
+	// Adjustable parameters
 
-	double step_size = 10.0;
-	double error_tol = 1.0e-3;
-	int max_iter = 2000;
+	int noise_n1 = 1; // the parameter for estimating noise level, the value for linear regression
+	int noise_n2 = 6; // the parameter for estimating noise level, the value for linear regression
+	int noise_chunk = 30; // the parameter for estimating noise level, the length of the section for variance estimation
+
+	double step_size = 10.0; // the parameter for MLE, step of the increments
+	double error_tol = 1.0e-3; // the parameter for MLE, stopping criteria based on error tolerance
+	int max_iter = 2000; // the parameter for MLE, maximum iteration
+	double start_x1 = 10.0; // the paramter for MLE, initial search point for \theta_2
+	double start_x2 = 2.0; // the paramter for MLE, initial search point for \theta_3
+
+	int chunk_size = 15; // the parameter for NPD, the length of sectioning the data trial
+	double T_theta_1 = 4.0; // the parameter for NPD, T_theta_1 related to thresholding
+	int median_filter_strength = chunk_size; // the parameter for NPD, the strength of the median filter
+	double alpha = 0.01; // the paramter for NPD, the expected false alarm probability
+
+	// Other parameters
+
 	double dm = 0.95;
-	//double start_x1 = 5000;
-	//double start_x2 = 900;
-	double start_x1 = 10.0;
-	double start_x2 = 2.0;
 	int result_n = 10;
 
 	hzhu_npd_trial **NPD = new hzhu_npd_trial*[trail_N];
 
+	// NPD detection
 #pragma omp parallel for
 	for (int i = 0; i < trail_N; i++)
 	{
@@ -75,14 +82,15 @@ int main()
 		}
 	}
 
+	// post processing and output
 	for (int i = 0; i < trail_N; i++)
 	{
 		if (abnormal.data->data[i] == 0.0)
 		{
 			std::string local_name("Result_" + hzhu_gen_int_to_string(i + 1));
-			//NPD[i]->save_all(local_name.c_str());
-			hzhu_mat D = NPD[i]->detect(0.0001, NPD[0]->median_abs_theta1(), 4.0, chunk_size);
-			//D.save_to_file(local_name + "_detect.csv");
+			NPD[i]->save_all(local_name.c_str());
+			hzhu_mat D = NPD[i]->detect(alpha, NPD[0]->median_abs_theta1(), T_theta_1, median_filter_strength);
+			D.save_to_file(local_name + "_detect.csv");
 			hzhu_mat R = hzhu_npd_results(D, *NPD[i]->result_x, *NPD[i]->result_y);
 			R.save_to_file(local_name + "_detail.csv");
 		}

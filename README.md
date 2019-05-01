@@ -20,4 +20,13 @@ What is contained in this repository is the algorithm (C++) that detects (micro)
   The output of the NPD regarding the [i] trial (ith row of the data files) are the following:
   
   - Result_[i]_detail.csv
-  - Result_[i]_
+    The detailed detection result, a N by 10 matrix. N is the total number of detected events of the [i] trial. For detailed explanation of the meaning of each element in a row, please check file hzhu_npd.h at function hzhu_mat hzhu_npd_results(hzhu_mat &detect, hzhu_mat &result_X, hzhu_mat &result_Y).
+  - Result_[i]_detect.csv
+  - Result_[i]data_x.csv
+  - Result_[i]data_y.csv
+  - Result_[i]noise_x_raw.csv
+  - Result_[i]noise_y_raw.csv
+  - Result_[i]result_x.csv
+  - Result_[i]result_y.csv
+  - Result-[i]SIGMA_inv_x.csv
+  - Result-[i]SIGMA_inv_y.csv

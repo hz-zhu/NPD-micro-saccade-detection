@@ -21,7 +21,7 @@ What is contained in this repository is the algorithm (C++) that detects (micro)
   
   - Result_[i]_detail.csv
   
-    The detailed detection result, a N by 10 matrix. N is the total number of detected events of the [i] trial. For detailed explanation of the meaning of each element in a row, please check file ''hzhu_npd.h'' for function ''hzhu_mat hzhu_npd_results(hzhu_mat &detect, hzhu_mat &result_X, hzhu_mat &result_Y)''.
+    The detailed detection result, a N by 10 matrix. N is the total number of detected events of the [i] trial. For detailed explanation of the meaning of each element in a row, please check file _hzhu_npd.h_ for function _hzhu_mat hzhu_npd_results(hzhu_mat &detect, hzhu_mat &result_X, hzhu_mat &result_Y)_.
     
   - Result_[i]_detect.csv
   

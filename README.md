@@ -1,4 +1,4 @@
-# NPD-micro-saccade-detection
+# Neyman–Pearson Detector (NPD) for saccadic eye movements
 
 What is contained in this repository is the algorithm (C++) that detects (micro)saccades in eye-gaze signal.
 

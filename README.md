@@ -9,7 +9,7 @@ What is contained in this repository is the algorithm (C++) that detects (micro)
   
   For the detailed description regarding the theoretical background and the analytical results of our algorithm, please read our paper:
   
-  Hongzhi Zhu et el. "The Neyman Pearson Detection of Microsaccades with Maximum Likelihood Estimation of Parameters." Journal of Vision (2019) [under review]
+    Hongzhi Zhu et el. "The Neyman Pearson Detection of Microsaccades with Maximum Likelihood Estimation of Parameters." Journal of Vision (2019) [under review]
   
   If you wish to use our algorithm, please cite the aforementioned paper.
 

@@ -6,6 +6,12 @@ What is contained in this repository is the algorithm (C++) that detects (micro)
 
   - For the installation of the GSL, please visit https://www.gnu.org/software/gsl/. (Version 2.5 or higher required)
   - For the installation of the Intel compiler, please visit https://software.intel.com/en-us/parallel-studio-xe. (If not using the Intel compiler, proper configuration would be required before compiling the project due to the use of the header: omp.h)
+  
+  For the detailed description regarding the theoretical background and the analytical results of our algorithm, please read our paper:
+  
+  Hongzhi Zhu et el. "The Neyman Pearson Detection of Microsaccades with Maximum Likelihood Estimation of Parameters." Journal of Vision (2019) [under review]
+  
+  If you wish to use our algorithm, please cite the aforementioned paper.
 
   **In the directory _NPD-micro-saccade-detection/NPD_v5_, the following files are contained:**
 

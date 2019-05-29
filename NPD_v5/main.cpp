@@ -52,10 +52,10 @@ int main()
 	double start_x1 = 10.0; // the paramter for MLE, initial search point for \theta_2
 	double start_x2 = 2.0; // the paramter for MLE, initial search point for \theta_3
 
-	int chunk_size = 30; // the parameter for NPD, the length of sectioning the data trial
+	int chunk_size = 20; // the parameter for NPD, the length of sectioning the data trial
 	double T_theta_1 = 4.0; // the parameter for NPD, T_theta_1 related to thresholding
-	int median_filter_strength = chunk_size - 10; // the parameter for NPD, the strength of the median filter
-	double alpha = 0.01; // the paramter for NPD, the expected false alarm probability
+	int median_filter_strength = 16; // the parameter for NPD, the strength of the median filter
+	double alpha = 0.0001; // the paramter for NPD, the expected false alarm probability
 
 	// Other parameters
 

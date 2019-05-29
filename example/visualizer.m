@@ -13,8 +13,10 @@ data_cell = struct2cell(data);
 data_cell_x = struct2cell(data_x);
 data_cell_y = struct2cell(data_y);
 
-t = -10:1:35;
+t = -15:1:35;
 dm = 0.95;
+
+sampling_rate = 1000;
 
 %% Plot results
 
@@ -39,13 +41,28 @@ for i = 2:N+1
     theta2_x = data_cell{i}(:,5);
     theta3_x = data_cell{i}(:,6);
     
+    tmp = (theta3_x-1)./theta3_x;
     d = theta2_x.*(-log(0.5-0.5*dm)).^(1./theta3_x)-theta2_x.*(-log(0.5+0.5*dm)).^(1./theta3_x);
+    
+    vmax_x = theta1_x.*theta3_x./theta2_x.*exp(-tmp).*tmp.^tmp;
+    t1 = theta2_x.*(-log(0.5+0.5*dm)).^(1./theta3_x);
+    tv = theta2_x.*tmp.^(1.0./theta3_x);
+    
     scatter(round(data_cell{i}(:,3)+d),data_cell_x{i}(round(data_cell{i}(:,3)+d)),50,'bx','LineWidth',0.8)
+    
+    scatter(round(data_cell{i}(:,3)+tv-t1),data_cell_x{i}(round(data_cell{i}(:,3)+tv-t1)),50,'*','LineWidth',0.8)
+    
+    for p = 1:length(vmax_x)
+        text(round(data_cell{i}(p,3)+tv(p)-t1(p)),data_cell_x{i}(round(data_cell{i}(p,3)+tv(p)-t1(p))),...
+            ['\leftarrow ',num2str(vmax_x(p)*sampling_rate,'%.1f'),'^o/s'])
+    end
+    
     plot(data_cell_x{i})
     
     leg{j+1} = 'start point';
     leg{j+2} = 'end point';
-    leg{j+3} = 'gaze signal (X)';
+    leg{j+3} = 'max velocity';
+    leg{j+4} = 'gaze signal (X)';
     legend(leg,'Location','best')
     xlabel('Discrete time index k')
     ylabel('X position (degree)')
@@ -66,13 +83,28 @@ for i = 2:N+1
     theta2_y = data_cell{i}(:,9);
     theta3_y = data_cell{i}(:,10);
     
+    tmp = (theta3_y-1)./theta3_y;
     d = theta2_y.*(-log(0.5-0.5*dm)).^(1./theta3_y)-theta2_y.*(-log(0.5+0.5*dm)).^(1./theta3_y);
+    
+    vmax_y = theta1_y.*theta3_y./theta2_y.*exp(-tmp).*tmp.^tmp;
+    t1 = theta2_y.*(-log(0.5+0.5*dm)).^(1./theta3_y);
+    tv = theta2_y.*tmp.^(1.0./theta3_y);
+    
     scatter(round(data_cell{i}(:,7)+d),data_cell_y{i}(round(data_cell{i}(:,7)+d)),50,'bx','LineWidth',0.8)
+    
+    scatter(round(data_cell{i}(:,7)+tv-t1),data_cell_y{i}(round(data_cell{i}(:,7)+tv-t1)),50,'*','LineWidth',0.8)
+    
+    for p = 1:length(vmax_y)
+        text(round(data_cell{i}(p,7)+tv(p)-t1(p)),data_cell_y{i}(round(data_cell{i}(p,7)+tv(p)-t1(p))),...
+            ['\leftarrow ',num2str(vmax_y(p)*1000,'%.1f'),'^o/s'])
+    end
+    
     plot(data_cell_y{i})
 
     leg{j+1} = 'start point';
     leg{j+2} = 'end point';
-    leg{j+3} = 'gaze signal (X)';
+    leg{j+3} = 'max velocity';
+    leg{j+4} = 'gaze signal (Y)';
     legend(leg,'Location','best')
     xlabel('Discrete time index k')
     ylabel('Y position (degree)')
